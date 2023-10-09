@@ -4,12 +4,15 @@
 \alias{lm.test}
 \title{Linear model test}
 \usage{
-lm.test(f_list, X, alpha = 0.05, epsilon, verbose = T, plot = F)
+lm.test(f_list, X, vars = "all", alpha = 0.05, epsilon, verbose = T, plot = F)
 }
 \arguments{
 \item{f_list}{List of regression functions that receives x}
 
 \item{X}{Covariate matrix}
+
+\item{vars}{Either 'all' or a vector of the columns of X to be added to the
+test. Default is 'all'.}
 
 \item{alpha}{Significance level, default is 0.05.}
 

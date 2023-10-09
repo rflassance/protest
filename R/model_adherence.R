@@ -6,6 +6,8 @@
 #' 
 #' @param f Regression function that receives x
 #' @param X Covariate matrix
+#' @param vars Either 'all' or a vector of the columns of X to be added to the
+#' test. Default is 'all'.
 #'
 #' @return Distance between function f and the linear model specified by X
 #' 
@@ -17,12 +19,17 @@
 #' lm.dist(f, X) #f is linear, so distance is close to 0
 #' 
 #' @export
-lm.dist <-function(f, X){
-  Ax <- t(X)%*%X
+lm.dist <-function(f, X, vars = 'all'){
+  if(vars == 'all'){
+    XX <- X
+  } else XX <- X[,vars, drop = F]
+  Ax <- t(XX)%*%XX
   fx <- base::apply(X, 1, function(x) f(x))
-  Xfx <- t(X)%*%fx
-  beta_hat <- base::solve(Ax, Xfx)
-  sqrt(sum((X%*%beta_hat - fx)^2))
+  Xfx <- t(XX)%*%fx
+  if(dim(XX)[2] > 1){
+    beta_hat <- base::solve(Ax, Xfx)
+  } else beta_hat <- Xfx/Ax
+  sqrt(sum((XX%*%beta_hat - fx)^2))
 }
 
 #' @title Linear model test
@@ -34,6 +41,8 @@ lm.dist <-function(f, X){
 #' 
 #' @param f_list List of regression functions that receives x
 #' @param X Covariate matrix
+#' @param vars Either 'all' or a vector of the columns of X to be added to the
+#' test. Default is 'all'.
 #' @param alpha Significance level, default is 0.05.
 #' @param epsilon Threshold value
 #' @param verbose Should the decision be returned as a message? Default if TRUE
@@ -50,7 +59,7 @@ lm.dist <-function(f, X){
 #' lm.test(f_list, X, alpha = 0.05, epsilon = 0.1, verbose = TRUE, plot = TRUE)
 #' 
 #' @export
-lm.test <- function(f_list, X, alpha = 0.05, epsilon, verbose = T, plot = F){
-  dissim <- sapply(f_list, function(x) protest::lm.dist(x, X = X))
+lm.test <- function(f_list, X, vars = 'all', alpha = 0.05, epsilon, verbose = T, plot = F){
+  dissim <- sapply(f_list, function(x) protest::lm.dist(x, X = X, vars = vars))
   protest::test.results(dissim, alpha, epsilon, verbose, plot)
 }

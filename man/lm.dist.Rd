@@ -4,12 +4,15 @@
 \alias{lm.dist}
 \title{Linear model L2 distance}
 \usage{
-lm.dist(f, X)
+lm.dist(f, X, vars = "all")
 }
 \arguments{
 \item{f}{Regression function that receives x}
 
 \item{X}{Covariate matrix}
+
+\item{vars}{Either 'all' or a vector of the columns of X to be added to the
+test. Default is 'all'.}
 }
 \value{
 Distance between function f and the linear model specified by X
