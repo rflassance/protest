@@ -7,7 +7,7 @@
 #' @param dissim Vector of dissimilarities
 #' @param alpha Significance level, default is 0.05
 #' @param epsilon Threshold
-#' @param verbose Should the decision be returned as a message? Default if FALSE
+#' @param verbose Should the decision be returned as a message? Default if TRUE
 #' @param plot Should the test return a plot of the decision for each
 #' (alpha, epsilon)? Default is FALSE
 #' @param dissim_min Smallest value possible for the dissimilarity function,
@@ -22,7 +22,7 @@
 #' 
 #' @export
 
-test.results <- function(dissim, alpha = 0.05, epsilon, verbose = F, plot = F,
+test.results <- function(dissim, alpha = 0.05, epsilon, verbose = T, plot = F,
                          dissim_min = 0){
   prag.prob <- sapply(epsilon, function(x) mean(dissim <= x))
   decision <- ifelse(prag.prob <= alpha, 'Reject', 'Do not reject')

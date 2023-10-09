@@ -8,7 +8,7 @@ test.results(
   dissim,
   alpha = 0.05,
   epsilon,
-  verbose = F,
+  verbose = T,
   plot = F,
   dissim_min = 0
 )
@@ -20,7 +20,7 @@ test.results(
 
 \item{epsilon}{Threshold}
 
-\item{verbose}{Should the decision be returned as a message? Default if FALSE}
+\item{verbose}{Should the decision be returned as a message? Default if TRUE}
 
 \item{plot}{Should the test return a plot of the decision for each
 (alpha, epsilon)? Default is FALSE}
