@@ -20,8 +20,6 @@ gpm <- GauPro_kernel_model$new(matrix(x[-1], ncol=1), y[-1], kernel=kern)
 kern.exp <- Exponential$new(0)
 gpe <- GauPro_kernel_model$new(matrix(x[-1], ncol=1), y[-1], kernel=kern.exp)
 
-n <- 100
-
 get_flist <- function(gp, X, n, seed = NULL){
   f_list <- list()
   set.seed(seed)
@@ -39,13 +37,13 @@ get_flist <- function(gp, X, n, seed = NULL){
 f_list1 <- get_flist(gp, x, n = 2000, seed = 42)
 
 lm_res <- protest::lm.test(f_list1, X = cbind(1, x),
-                           alpha = 0.05, epsilon = epsilon,
+                           alpha = 0.05, epsilon = epsilon/sqrt(length(x)),
                            verbose = T, plot = T)
 g1 <- lm_res$plot
 g1
 
 lm_res <- protest::lm.test(f_list1, X = cbind(1, x), vars = 1,
-                           alpha = 0.05, epsilon = epsilon,
+                           alpha = 0.05, epsilon = epsilon/sqrt(length(x)),
                            verbose = T, plot = T)
 r1 <- lm_res$plot
 r1
@@ -53,13 +51,13 @@ r1
 f_list2 <- get_flist(gpm, x, n = 2000, seed = 42)
 
 lm_res <- protest::lm.test(f_list2, X = cbind(1, x),
-                           alpha = 0.05, epsilon = epsilon,
+                           alpha = 0.05, epsilon = epsilon/sqrt(length(x)),
                            verbose = T, plot = T)
 g2 <- lm_res$plot
 g2
 
 lm_res <- protest::lm.test(f_list2, X = cbind(1, x), vars = 1,
-                           alpha = 0.05, epsilon = epsilon,
+                           alpha = 0.05, epsilon = epsilon/sqrt(length(x)),
                            verbose = T, plot = T)
 r2 <- lm_res$plot
 r2
@@ -68,13 +66,13 @@ r2
 f_list3 <- get_flist(gpe, x, n = 2000, seed = 42)
 
 lm_res <- protest::lm.test(f_list3, X = cbind(1, x),
-                           alpha = 0.05, epsilon = epsilon,
+                           alpha = 0.05, epsilon = epsilon/sqrt(length(x)),
                            verbose = T, plot = T)
 g3 <- lm_res$plot
 g3
 
 lm_res <- protest::lm.test(f_list3, X = cbind(1, x), vars = 1,
-                           alpha = 0.05, epsilon = epsilon,
+                           alpha = 0.05, epsilon = epsilon/sqrt(length(x)),
                            verbose = T, plot = T)
 r3 <- lm_res$plot
 r3

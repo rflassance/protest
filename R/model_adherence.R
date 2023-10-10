@@ -29,7 +29,7 @@ lm.dist <-function(f, X, vars = 'all'){
   if(dim(XX)[2] > 1){
     beta_hat <- base::solve(Ax, Xfx)
   } else beta_hat <- Xfx/Ax
-  sqrt(sum((XX%*%beta_hat - fx)^2))
+  sqrt(sum((XX%*%beta_hat - fx)^2)/dim(XX)[1])
 }
 
 #' @title Linear model test

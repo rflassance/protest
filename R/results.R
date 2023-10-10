@@ -28,7 +28,7 @@ test.results <- function(dissim, alpha = 0.05, epsilon, verbose = T, plot = F,
   decision <- ifelse(prag.prob <= alpha, 'Reject', 'Do not reject')
   if(verbose){
     cat("PROTEST conclusion: ", decision, " H0.\n")
-    message("Pg(H0) = ", prag.prob, ".")
+    message("Probability of Pg(H0) = ", prag.prob, ".")
   }
   if(plot){
     x <- seq(from = 0, to = 1, length.out = 1000)
