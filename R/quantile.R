@@ -12,10 +12,10 @@
 #' distribution functions such that G(x0) = p0.
 #' 
 #' @examples
-#' quant.dissim(pdist = pexp, qdist = qexp, x0 = 1, p0 = 0.5)
+#' quant.dist(pdist = pexp, qdist = qexp, x0 = 1, p0 = 0.5)
 #' 
 #' @export
-quant.dissim <- function(pdist, qdist, x0 = 0, p0 = 0.5){
+quant.dist <- function(pdist, qdist, x0 = 0, p0 = 0.5){
   F.quant <- qdist(p = p0)
   a = min(F.quant, x0)
   b = max(F.quant, x0)
@@ -23,10 +23,11 @@ quant.dissim <- function(pdist, qdist, x0 = 0, p0 = 0.5){
   return(dissim)
 }
 
-#' @title L1 distance for the quantile test
+#' @title Quantile test
 #' 
-#' @description L1 distance between a distribution function F and the function G
-#' that best appoximates and obeys the condition G(x0) = p0.
+#' @description PROTEST version of the quantile test. For a given x0 and p0, it
+#' checks if the data is such that F(x0) = p0, where F is the unknown true
+#' distribution function.
 #' 
 #' @param p_list List of distribution functions.
 #' @param q_list List of quantile distributions associated to p_list.
@@ -48,7 +49,7 @@ quant.dissim <- function(pdist, qdist, x0 = 0, p0 = 0.5){
 #' q_list <- list(qexp, function(p) qgamma(p, shape = 2),
 #' function(p) qexp(p, rate = 2))
 #' 
-#' quant.test(p_list = p_list, q_list = q_list, alpha = 0.05, epsilon = 0.1, x0 = 1,
+#' quant.test(p_list, q_list, alpha = 0.05, epsilon = 0.1, x0 = 1,
 #' verbose = TRUE, plot = TRUE)
 #' 
 #' @export
@@ -56,7 +57,7 @@ quant.test <- function(p_list, q_list, x0 = 0, p0 = 0.5, alpha = 0.05, epsilon,
                        verbose = T, plot = F){
   n <- length(p_list)
   dissim <- sapply(1:length(p_list),
-                   function(i) protest::quant.dissim(p_list[[i]], q_list[[i]],
+                   function(i) protest::quant.dist(p_list[[i]], q_list[[i]],
                                                      x0 = 0, p0 = 0.5))
   protest::test.results(dissim, alpha, epsilon, verbose, plot)
 }

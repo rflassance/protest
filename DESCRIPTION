@@ -7,7 +7,8 @@ Maintainer: Rodrigo <rflassance@gmail.com>
 Description: PROTEST procedures for some popular nonparametric tests
 Imports:
     ggplot2,
-    ggpubr
+    ggpubr,
+    stats
 License: GPL-3
 Encoding: UTF-8
 RoxygenNote: 7.1.2

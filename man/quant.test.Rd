@@ -2,7 +2,7 @@
 % Please edit documentation in R/quantile.R
 \name{quant.test}
 \alias{quant.test}
-\title{L1 distance for the quantile test}
+\title{Quantile test}
 \usage{
 quant.test(
   p_list,
@@ -38,8 +38,9 @@ three-way test is performed.}
 Test results of the quantile test.
 }
 \description{
-L1 distance between a distribution function F and the function G
-that best appoximates and obeys the condition G(x0) = p0.
+PROTEST version of the quantile test. For a given x0 and p0, it
+checks if the data is such that F(x0) = p0, where F is the unknown true
+distribution function.
 }
 \examples{
 p_list <- list(pexp, function(x) pgamma(x, shape = 2),
@@ -48,7 +49,7 @@ function(x) pexp(x, rate = 2))
 q_list <- list(qexp, function(p) qgamma(p, shape = 2),
 function(p) qexp(p, rate = 2))
 
-quant.test(p_list = p_list, q_list = q_list, alpha = 0.05, epsilon = 0.1, x0 = 1,
+quant.test(p_list, q_list, alpha = 0.05, epsilon = 0.1, x0 = 1,
 verbose = TRUE, plot = TRUE)
 
 }
