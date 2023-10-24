@@ -6,7 +6,8 @@ Author: Rodrigo F L Lassance
 Maintainer: Rodrigo <rflassance@gmail.com>
 Description: PROTEST procedures for some popular nonparametric tests
 Imports:
-    ggplot2
+    ggplot2,
+    ggpubr
 License: GPL-3
 Encoding: UTF-8
 RoxygenNote: 7.1.2

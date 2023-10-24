@@ -7,20 +7,21 @@
 lm.dist(f, X, vars = "all")
 }
 \arguments{
-\item{f}{Regression function that receives x}
+\item{f}{Regression function that receives x.}
 
-\item{X}{Covariate matrix}
+\item{X}{Covariate matrix.}
 
 \item{vars}{Either 'all' or a vector of the columns of X to be added to the
 test. Default is 'all'.}
 }
 \value{
-Distance between function f and the linear model specified by X
+Distance between function f and the linear model specified by X.
 }
 \description{
-L2 distance between a function f and the covariance matrix X.
-While the distance allows for the use of any probability measure to be
-applied to X, we used the empirical distribution for simplicity.
+L2 distance between a function f and the linear model is closest
+to it on the domain of covariance matrix X. While the distance allows for the
+use of any probability measure to be applied to X, we use the empirical
+distribution for simplicity.
 }
 \examples{
 f <- function(x) sum(x)

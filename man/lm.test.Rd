@@ -14,11 +14,12 @@ lm.test(f_list, X, vars = "all", alpha = 0.05, epsilon, verbose = T, plot = F)
 \item{vars}{Either 'all' or a vector of the columns of X to be added to the
 test. Default is 'all'.}
 
-\item{alpha}{Significance level, default is 0.05.}
+\item{alpha}{Significance level, default is 0.05. When given two values, a
+three-way test is performed.}
 
-\item{epsilon}{Threshold value}
+\item{epsilon}{Threshold value.}
 
-\item{verbose}{Should the decision be returned as a message? Default if TRUE}
+\item{verbose}{Should the decision be returned as a message? Default if TRUE.}
 
 \item{plot}{Should the test return a plot of the decision for each
 (alpha, epsilon)? Default is FALSE}

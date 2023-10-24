@@ -10,27 +10,32 @@ test.results(
   epsilon,
   verbose = T,
   plot = F,
-  dissim_min = 0
+  dissim_min = 0,
+  three_way = F
 )
 }
 \arguments{
-\item{dissim}{Vector of dissimilarities}
+\item{dissim}{Vector of dissimilarities.}
 
-\item{alpha}{Significance level, default is 0.05}
+\item{alpha}{Significance level, default is 0.05.}
 
-\item{epsilon}{Threshold}
+\item{epsilon}{Threshold.}
 
-\item{verbose}{Should the decision be returned as a message? Default if TRUE}
+\item{verbose}{Should the decision be returned as a message? Default is TRUE.}
 
 \item{plot}{Should the test return a plot of the decision for each
-(alpha, epsilon)? Default is FALSE}
+(alpha, epsilon)? Default is FALSE.}
 
 \item{dissim_min}{Smallest value possible for the dissimilarity function,
 default is 0.}
+
+\item{three_way}{Should the results provided be of a three-way test? Default
+is FALSE. If two values for alpha are provided, this option is ignored.}
 }
 \value{
 Test results (decision, dissimilarity vector, significance level,
-threshold and plot).
+threshold and plot). If plotting on the three-way case, the plot assumes that
+alpha2 = 1 - alpha1.
 }
 \description{
 Test results based on the dissimilarity, significance alpha and
@@ -39,6 +44,6 @@ decision based on each combination of (alpha, epsilon).
 }
 \examples{
 dissim <- seq(.5, 1, length.out = 100)
-test.results(dissim = dissim, epsilon = .5, verbose = TRUE, plot = TRUE, dissim_min = 0.5)
+test.results(dissim = dissim, epsilon = .8, verbose = TRUE, plot = TRUE, dissim_min = 0.5)
 
 }

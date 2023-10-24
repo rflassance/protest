@@ -1,15 +1,16 @@
 #' @title Linear model L2 distance
 #' 
-#' @description L2 distance between a function f and the covariance matrix X.
-#' While the distance allows for the use of any probability measure to be
-#' applied to X, we used the empirical distribution for simplicity.
+#' @description L2 distance between a function f and the linear model is closest
+#' to it on the domain of covariance matrix X. While the distance allows for the
+#' use of any probability measure to be applied to X, we use the empirical
+#' distribution for simplicity.
 #' 
-#' @param f Regression function that receives x
-#' @param X Covariate matrix
+#' @param f Regression function that receives x.
+#' @param X Covariate matrix.
 #' @param vars Either 'all' or a vector of the columns of X to be added to the
 #' test. Default is 'all'.
 #'
-#' @return Distance between function f and the linear model specified by X
+#' @return Distance between function f and the linear model specified by X.
 #' 
 #' @examples
 #' f <- function(x) sum(x)
@@ -43,9 +44,10 @@ lm.dist <-function(f, X, vars = 'all'){
 #' @param X Covariate matrix
 #' @param vars Either 'all' or a vector of the columns of X to be added to the
 #' test. Default is 'all'.
-#' @param alpha Significance level, default is 0.05.
-#' @param epsilon Threshold value
-#' @param verbose Should the decision be returned as a message? Default if TRUE
+#' @param alpha Significance level, default is 0.05. When given two values, a
+#' three-way test is performed.
+#' @param epsilon Threshold value.
+#' @param verbose Should the decision be returned as a message? Default if TRUE.
 #' @param plot Should the test return a plot of the decision for each
 #' (alpha, epsilon)? Default is FALSE
 #'
@@ -59,7 +61,8 @@ lm.dist <-function(f, X, vars = 'all'){
 #' lm.test(f_list, X, alpha = 0.05, epsilon = 0.1, verbose = TRUE, plot = TRUE)
 #' 
 #' @export
-lm.test <- function(f_list, X, vars = 'all', alpha = 0.05, epsilon, verbose = T, plot = F){
+lm.test <- function(f_list, X, vars = 'all', alpha = 0.05, epsilon,
+                    verbose = T, plot = F){
   dissim <- sapply(f_list, function(x) protest::lm.dist(x, X = X, vars = vars))
   protest::test.results(dissim, alpha, epsilon, verbose, plot)
 }

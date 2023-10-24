@@ -2,4 +2,6 @@
 
 export(lm.dist)
 export(lm.test)
+export(quant.dissim)
+export(quant.test)
 export(test.results)
