@@ -37,8 +37,10 @@ test.results <- function(dissim, alpha = 0.05, epsilon, verbose = T, plot = F,
     decision <- ifelse(prag.prob <= alpha[1], 'Reject',
                        ifelse(prag.prob <= alpha[2],'Remain agnostic','Accept'))
     if(verbose){
-      cat("PROTEST conclusion: ", decision, " H0.\n")
-      message("Probability of Pg(H0) = ", prag.prob, ".")
+      cat("PROTEST conclusion: ", ifelse(decision != "Remain agnostic",
+                                         decision, "Remain agnostic about"),
+          " H0.\n", sep = '')
+      message("Prob(Pg(H0)) = ", prag.prob, ".")
     }
     if(plot){
       x <- seq(from = 0, to = .5, length.out = 1000)
@@ -63,16 +65,17 @@ test.results <- function(dissim, alpha = 0.05, epsilon, verbose = T, plot = F,
                        legend.box.just = "right",
                        legend.title = ggplot2::element_text(face = "bold")) +
         ggplot2::scale_fill_manual(name = 'Decision',
-                                   labels = c("Reject", "Remain agnostic",
-                                              "Accept"),
+                                   labels = c("rej" = "Reject",
+                                              "agn" = "Remain agnostic",
+                                              "acc" = "Accept"),
                                    values = c("rej" = "red", "agn" = "yellow",
                                               "acc" = "green"))
     } else g <- NULL
   }else{
     decision <- ifelse(prag.prob <= alpha, 'Reject', 'Do not reject')
     if(verbose){
-      cat("PROTEST conclusion: ", decision, " H0.\n")
-      message("Probability of Pg(H0) = ", prag.prob, ".")
+      cat("PROTEST conclusion: ", decision, " H0.\n", sep = '')
+      message("Prob(Pg(H0)) = ", prag.prob, ".")
     }
     if(plot){
       x <- seq(from = 0, to = 1, length.out = 1000)
@@ -93,10 +96,11 @@ test.results <- function(dissim, alpha = 0.05, epsilon, verbose = T, plot = F,
                        legend.box.just = "right",
                        legend.title = ggplot2::element_text(face = "bold")) +
         ggplot2::scale_fill_manual(name = 'Decision',
-                                   labels = c("Reject", "Do not reject"),
+                                   labels = c("rej" = "Reject",
+                                              "nrej" = "Do not reject"),
                                    values = c("rej" = "red", "nrej" = "green"))
     } else g <- NULL
   }
-  return(list(decision = decision, dissim = dissim,
-              alpha = alpha, epsilon = epsilon, plot = g))
+  list(decision = decision, dissim = dissim, alpha = alpha, epsilon = epsilon,
+       plot = g)
 }

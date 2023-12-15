@@ -4,15 +4,29 @@
 \alias{lm.test}
 \title{Linear model test}
 \usage{
-lm.test(f_list, X, vars = "all", alpha = 0.05, epsilon, verbose = T, plot = F)
+lm.test(
+  f_list,
+  X,
+  g = function(x) x,
+  vars = "all",
+  add_intercept = F,
+  alpha = 0.05,
+  epsilon,
+  verbose = T,
+  plot = F
+)
 }
 \arguments{
 \item{f_list}{List of regression functions that receives x}
 
 \item{X}{Covariate matrix}
 
+\item{g}{Link function. Default is the identity function.}
+
 \item{vars}{Either 'all' or a vector of the columns of X to be added to the
 test. Default is 'all'.}
+
+\item{add_intercept}{Should the intercept be added to X? Default is FALSE.}
 
 \item{alpha}{Significance level, default is 0.05. When given two values, a
 three-way test is performed.}

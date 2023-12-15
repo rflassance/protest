@@ -7,7 +7,7 @@
 twosample.test(
   p1_list,
   p2_list,
-  dist = function(pdist1, pdist2) {     protest::Lp.dist(pdist1, pdist2, p = 1) },
+  dist = protest::Lp.dist,
   alpha = 0.05,
   epsilon,
   verbose = T,
@@ -48,7 +48,9 @@ p2_list <- list(function(x) pexp(x, rate = 1.1),
 function(p) pgamma(p, shape = 2.1),
 function(p) pexp(p, rate = 2.1))
 
-my_dist <- function(pdist1, pdist2) protest::Lp.dist(pdist1, pdist2, p = 2)
+my_dist <- function(pdist1, pdist2){
+protest::Lp.dist(pdist1, pdist2, p = 2, lower = 0)
+}
 
 twosample.test(p1_list, p2_list, dist = my_dist, alpha = 0.05, epsilon = 0.1,
 verbose = TRUE, plot = TRUE)

@@ -4,15 +4,19 @@
 \alias{lm.dist}
 \title{Linear model L2 distance}
 \usage{
-lm.dist(f, X, vars = "all")
+lm.dist(f, X, g = function(x) x, vars = "all", add_intercept = F)
 }
 \arguments{
 \item{f}{Regression function that receives x.}
 
 \item{X}{Covariate matrix.}
 
+\item{g}{Link function. Default is the identity function.}
+
 \item{vars}{Either 'all' or a vector of the columns of X to be added to the
 test. Default is 'all'.}
+
+\item{add_intercept}{Should the intercept be added to X? Default is FALSE.}
 }
 \value{
 Distance between function f and the linear model specified by X.
