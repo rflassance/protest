@@ -57,7 +57,8 @@ test.results <- function(dissim, alpha = 0.05, epsilon, verbose = T, plot = F,
                              alpha=0.2) +
         ggplot2::geom_ribbon(ggplot2::aes(xmin=-Inf, xmax=y, fill='rej'),
                              alpha=0.2) +
-        ggplot2::xlab(expression(epsilon)) + ggplot2::ylab(expression(alpha)) +
+        ggplot2::xlab(expression(epsilon)) +
+        ggplot2::ylab(expression(Prob(Pg(H[0])*"|"*bold(X)==bold(x)))) +
         ggplot2::scale_x_continuous(limits = c(dissim_min, max(z)),
                                     expand = c(0, 0)) +
         ggplot2::scale_y_continuous(limits = c(0,.5), expand = c(0, 0)) +
@@ -75,7 +76,7 @@ test.results <- function(dissim, alpha = 0.05, epsilon, verbose = T, plot = F,
     decision <- ifelse(prag.prob <= alpha, 'Reject', 'Do not reject')
     if(verbose){
       cat("PROTEST conclusion: ", decision, " H0.\n", sep = '')
-      message("Prob(Pg(H0)) = ", prag.prob, ".")
+      message("Prob(Pg(H0)|x) = ", prag.prob, ".")
     }
     if(plot){
       x <- seq(from = 0, to = 1, length.out = 1000)
@@ -88,7 +89,8 @@ test.results <- function(dissim, alpha = 0.05, epsilon, verbose = T, plot = F,
                              alpha=0.2) +
         ggplot2::geom_ribbon(ggplot2::aes(ymin=x, ymax=Inf, fill='rej'),
                              alpha=0.2) +
-        ggplot2::xlab(expression(epsilon)) + ggplot2::ylab(expression(alpha)) +
+        ggplot2::xlab(expression(epsilon)) + 
+        ggplot2::ylab(expression(alpha)) +
         ggplot2::scale_x_continuous(limits = c(dissim_min, max(y)),
                                     expand = c(0, 0)) +
         ggplot2::scale_y_continuous(limits = c(0,1), expand = c(0, 0)) +
