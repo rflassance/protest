@@ -72,5 +72,5 @@ quant_test <- function(p_list, q_list, x0 = 0, p0 = 0.5, alpha = 0.05, epsilon,
       )
     }
   )
-  protest::test_results(dissim, alpha, epsilon, verbose, plot)
+  protest::test_results(dissim, epsilon, alpha, verbose, plot)
 }

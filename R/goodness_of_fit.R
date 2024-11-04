@@ -41,5 +41,5 @@ gof_test <- function(
     dissim = protest::Lp_dist, alpha = 0.05,
     epsilon, verbose = TRUE, plot = FALSE, dissim_min = 0) {
   dissim_sam <- sapply(p_list, function(pdist) dissim(pdist, H0_pdist))
-  protest::test_results(dissim_sam, alpha, epsilon, verbose, plot, dissim_min)
+  protest::test_results(dissim_sam, epsilon, alpha, verbose, plot, dissim_min)
 }

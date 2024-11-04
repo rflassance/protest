@@ -5,8 +5,8 @@
 #' decision based on each combination of (alpha, epsilon).
 #'
 #' @param dissim Vector of dissimilarities.
-#' @param alpha Significance level, default is 0.05.
 #' @param epsilon Threshold.
+#' @param alpha Significance level, default is 0.05.
 #' @param verbose Should the decision be returned as a message? Default is TRUE.
 #' @param plot Should the test return a plot of the decision for each
 #' (alpha, epsilon)? Default is FALSE.

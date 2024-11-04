@@ -85,5 +85,5 @@ lm_test <- function(f_list, X, epsilon, g = function(x) x, vars = "all",
       )
     }
   )
-  protest::test_results(dissim, alpha, epsilon, verbose, plot)
+  protest::test_results(dissim, epsilon, alpha, verbose, plot)
 }

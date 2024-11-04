@@ -52,5 +52,5 @@ twosample_test <- function(
       )
     }
   )
-  protest::test_results(as.numeric(dissim), alpha, epsilon, verbose, plot)
+  protest::test_results(as.numeric(dissim), epsilon, alpha, verbose, plot)
 }
